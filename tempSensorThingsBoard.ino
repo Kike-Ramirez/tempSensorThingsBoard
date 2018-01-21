@@ -50,17 +50,15 @@ DS1620 ds1620(0, 1, 2);
 void setup()
 {
 
-  //GPIO 1 (TX) swap the pin to a GPIO.
-  pinMode(GPIO1, FUNCTION_3);
 
   // Call DS1620 constructor using pin variables
   DS1620 ds1620(GPIO0, GPIO1, GPIO2);
+
+  //GPIO 1 (TX) swap the pin to a GPIO.
+  pinMode(GPIO1, FUNCTION_3);
   
   ds1620.config();
-  
-  //  Serial.begin(115200);
-  //  dht.begin();
-  delay(1);
+  delay(1000);
   InitWiFi();
   client.setServer( thingsboardServer, 1883 );
   lastSend = 0;
@@ -129,7 +127,7 @@ void reconnect() {
         delay(500);
       }
     }
-    if ( client.connect("ESP8266 Device", TOKEN, NULL) ) {
+    if ( client.connect("tempSensorThingsBoard Device", TOKEN, NULL) ) {
     } else {
       // Wait 5 seconds before retrying
       delay( 5000 );
