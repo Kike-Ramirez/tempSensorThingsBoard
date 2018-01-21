@@ -1,3 +1,16 @@
+/*
+ * 
+ * Firmware for ESP8266
+ * 
+ * Device: Temperature Sensor Node for ThingsBoard IOT Platform.
+ * Temperature Sensor: Dallas Semiconductors DS1620
+ * 
+ * Author: Kike Ramirez
+ * Date: 20/1/2018
+ * 
+ */
+
+
 #include <DS1620.h>
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
@@ -6,7 +19,7 @@
 #define WIFI_AP "CarmenLauraKike"
 #define WIFI_PASSWORD "Carmen2016"
 
-#define TOKEN "Z8rgVlZZgh6vzI2OYLtT"
+#define TOKEN "q5d18ZijUYUCShdyaza0"
 
 /* DS1620 pin connection
     
@@ -24,7 +37,7 @@
 #define GPIO1 1
 #define GPIO2 2
 
-char thingsboardServer[] = "demo.thingsboard.io";
+char thingsboardServer[] = "192.168.0.105";
 
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
@@ -60,24 +73,33 @@ void loop()
   }
 
   if ( millis() - lastSend > 1000 ) { // Update and send only after 1 seconds
-    getAndSendTemperatureData();
+    getAndSendTemperatureAndHumidityData();
     lastSend = millis();
   }
 
   client.loop();
 }
 
-void getAndSendTemperatureData()
+void getAndSendTemperatureAndHumidityData()
 {
 
-  float temp_c = ds1620.temp_c();
-  
-  String temperature = String(temp_c);
-  
+  // Reading temperature or humidity takes about 250 milliseconds!
+  float h = 0.0;
+  // Read temperature as Celsius (the default)
+  float t = ds1620.temp_c();
+ 
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t)) {
+    return;
+  }
+
+  String temperature = String(t);
+  String humidity = String(h);
+
   // Prepare a JSON payload string
   String payload = "{";
-  payload += "\"temperature\":"; 
-  payload += temperature; 
+  payload += "\"temperature\":"; payload += temperature; payload += ",";
+  payload += "\"humidity\":"; payload += humidity;
   payload += "}";
 
   // Send payload
