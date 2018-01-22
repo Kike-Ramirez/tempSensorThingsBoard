@@ -10,6 +10,17 @@
  * 
  */
 
+/* DS1620 pin connection
+    
+    ESP8266       DS1620
+    -------       --------------
+    +3.3 V        +3.3 V
+    GND           Pin 4 GND
+    GPIO0         Pin 1 RST
+    GPIO2         Pin 2 CLK/CONV
+    GPIO3 (RX)    Pin 3 CLK
+    
+*/
 
 #include <DS1620.h>
 #include <PubSubClient.h>
@@ -20,26 +31,18 @@
 
 #define TOKEN "Z8rgVlZZgh6vzI2OYLtT"
 
+// =================================
 // #define WIFI_AP "CarmenLauraKike"
 // #define WIFI_PASSWORD "Carmen2016"
-
 // #define TOKEN "q5d18ZijUYUCShdyaza0"
-
-/* DS1620 pin connection
-    
-    ESP8266       DS1620
-    -------       --------------
-    +3.3 V        +3.3 V
-    GND           Pin 4 GND
-    GPIO0         Pin 1 DQ
-    GPIO1 (TX)    Pin 2 CLK/CONV
-    GPIO2         Pin 3 RST
-*/
 
     
 #define GPIO0 0
 #define GPIO1 1
 #define GPIO2 2
+#define GPIO3 3
+
+#define measureFreq 5000
 
 char thingsboardServer[] = "demo.thingsboard.io";
 
@@ -49,23 +52,25 @@ PubSubClient client(wifiClient);
 int status = WL_IDLE_STATUS;
 unsigned long lastSend;
 
-DS1620 ds1620(0, 1, 2);
+// Call DS1620 constructor using pin variables (RST, CLK, DQ)
+DS1620 ds1620(GPIO0, GPIO2, GPIO3);
 
 void setup()
 {
 
+  // GPIO 3 (RX) swap the pin to a GPIO OUTPUT.
+  pinMode(GPIO3, FUNCTION_3);
+  pinMode(GPIO3, OUTPUT);
 
-  // Call DS1620 constructor using pin variables
-  // DS1620 ds1620(GPIO0, GPIO1, GPIO2);
-
-  // GPIO 1 (TX) swap the pin to a GPIO.
-  // pinMode(GPIO1, FUNCTION_3);
-  
+  // Configure DS1620
   ds1620.config();
-  delay(1000);
+  delay(200);
+
+  // Connect to WiFi
   InitWiFi();
   client.setServer( thingsboardServer, 1883 );
   lastSend = 0;
+  
 }
 
 void loop()
@@ -74,7 +79,8 @@ void loop()
     reconnect();
   }
 
-  if ( millis() - lastSend > 1000 ) { // Update and send only after 1 seconds
+  // Update and send only after measureFreq seconds
+  if ( millis() - lastSend > measureFreq ) { 
     getAndSendTemperatureAndHumidityData();
     lastSend = millis();
   }
@@ -95,6 +101,7 @@ void getAndSendTemperatureAndHumidityData()
     return;
   }
 
+  // Convert data to string
   String temperature = String(t);
   String humidity = String(h);
 
