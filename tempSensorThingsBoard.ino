@@ -15,11 +15,15 @@
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
 
+#define WIFI_AP "KikeRamirez"
+#define WIFI_PASSWORD "12345679"
 
-#define WIFI_AP "CarmenLauraKike"
-#define WIFI_PASSWORD "Carmen2016"
+#define TOKEN "Z8rgVlZZgh6vzI2OYLtT"
 
-#define TOKEN "q5d18ZijUYUCShdyaza0"
+// #define WIFI_AP "CarmenLauraKike"
+// #define WIFI_PASSWORD "Carmen2016"
+
+// #define TOKEN "q5d18ZijUYUCShdyaza0"
 
 /* DS1620 pin connection
     
@@ -37,7 +41,7 @@
 #define GPIO1 1
 #define GPIO2 2
 
-char thingsboardServer[] = "192.168.0.105";
+char thingsboardServer[] = "demo.thingsboard.io";
 
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
@@ -52,10 +56,10 @@ void setup()
 
 
   // Call DS1620 constructor using pin variables
-  DS1620 ds1620(GPIO0, GPIO1, GPIO2);
+  // DS1620 ds1620(GPIO0, GPIO1, GPIO2);
 
-  //GPIO 1 (TX) swap the pin to a GPIO.
-  pinMode(GPIO1, FUNCTION_3);
+  // GPIO 1 (TX) swap the pin to a GPIO.
+  // pinMode(GPIO1, FUNCTION_3);
   
   ds1620.config();
   delay(1000);
