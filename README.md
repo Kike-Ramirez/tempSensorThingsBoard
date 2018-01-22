@@ -18,10 +18,10 @@
 # Hardware connections
 
 ## Arduino <-> ESP8266 Connection - Uploading Firmware 
-![Firmware Upload Schematics](/images/ESP8266-FirmwareUpload_Schematics.png)
+![Firmware Upload Schematics](/images/tempSensorThingsBoard_UploadFirmware_bb.png)
 
 ## ESP8266 <-> DS1620 Connection - StandAlone Mode
-![StandAlone Mode Schematics](/images/ESP8266-StandAlone_Schematics.png)
+![StandAlone Mode Schematics](/images/tempSensorThingsBoard_StandAlone_bb.png)
 
 ## ESP8266 Pinout
 ![ESP8266 Pinout](/images/ESP8266-Pinout.png)
