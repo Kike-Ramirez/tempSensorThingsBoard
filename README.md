@@ -27,5 +27,5 @@
 ![ESP8266 Pinout](/images/ESP8266-Pinout.png)
 
 ## Temperature sensor MAXIM DS1620 Pinout
-![DS1620 Pinout](/images/ESP8266-Pinout.png)
+![DS1620 Pinout](/images/DS1620-Pinout.jpg)
 
