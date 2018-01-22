@@ -1,4 +1,4 @@
-# tempSensorThingsBoard
+# tempSensorThingsBoard v1.0
 
 ## Hardware:
 * ESP8266
