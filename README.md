@@ -16,21 +16,23 @@
 * MIT
 
 # Hardware connections
+Some references and help to implement hardware and program ESP8266 using an Arduino board by yourself.
 
 ## ESP8266 Pinout
-Check schematics in: 
+Check **schematics** in: http://www.esp8266.com/wiki/doku.php
 ![ESP8266 Pinout](/images/ESP8266-Pinout.png)
 
 ## Temperature sensor MAXIM DS1620 Pinout
-Check datasheet in: 
+Check **datasheet** in: https://datasheets.maximintegrated.com/en/ds/DS1620.pdf
 ![DS1620 Pinout](/images/DS1620-Pinout.jpg)
 
 ## Arduino <-> ESP8266 Connection - Uploading Firmware
-Check tutorial: 
+Check **tutorial**: https://create.arduino.cc/projecthub/ROBINTHOMAS/programming-esp8266-esp-01-with-arduino-011389
+
 ![Firmware Upload Schematics](/images/tempSensorThingsBoard_UploadFirmware_bb.png)
 
 ## ESP8266 <-> DS1620 Connection - StandAlone Mode
-Final design. v1.0
+**Final design. v1.0**
 
 * BreadBoard Mode:
   ![StandAlone - BreadBoard](/images/tempSensorThingsBoard_StandAlone_bb.jpg)
