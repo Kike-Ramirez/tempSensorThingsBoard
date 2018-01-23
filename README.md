@@ -44,6 +44,6 @@ Check **tutorial**: https://create.arduino.cc/projecthub/ROBINTHOMAS/programming
   ![StandAlone Mode Schematics](/images/tempSensorThingsBoard_StandAlone_pcb.jpg)
 
 * Final render of PCB:
-  ![PCB Render Top](/images/PCB_Top.png)
-  ![PCB Render Bottom](/images/PCB_Bottom.png)
+  ![PCB Render Top ](/images/PCB_Top.png)
+  ![PCB Render Bottom ](/images/PCB_Bottom.png)
 
