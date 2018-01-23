@@ -1,0 +1,24 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=tempSensorThingsBoard_StandAlone
+*Date=16:13:51
+*CreatedBy=Fritzing 0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;38.6234;-4.50246;0;Bottom;IMG1
+2;3V;;36.6889;-9.91423;0;Bottom;VCC1
+3;;;39.6778;-11.1677;0;Bottom;TXT1
+4;;;39.7544;-8.57091;0;Bottom;TXT1
+5;;;39.0338;-1.27514;0;Bottom;TXT1
+6;;;4.77139;-7.37731;90;Bottom;U1
+7;;DIP (Dual Inline) [THT];17.6389;-7.37423;0;Bottom;DS1620
+8;;;34.6833;-2.2341;0;Bottom;TXT1
+9;;;33.908;-6.00138;0;Bottom;TXT1
