@@ -28,14 +28,15 @@
     +3.3 V        +3.3 V
     GND           Pin 4 GND
     GPIO0         Pin 1 DQ
-    GPIO1 (TX)    Pin 2 CLK/CONV
-    GPIO2         Pin 3 RST
+    GPIO2         Pin 2 CLK/CONV
+    GPIO3 (RX)    Pin 3 RST
 */
 
     
 #define GPIO0 0
 #define GPIO1 1
 #define GPIO2 2
+#define GPIO3 3
 
 char thingsboardServer[] = "192.168.0.105";
 
@@ -45,17 +46,15 @@ PubSubClient client(wifiClient);
 int status = WL_IDLE_STATUS;
 unsigned long lastSend;
 
-DS1620 ds1620(0, 1, 2);
+// Order is (RS, CLK, DQ)
+DS1620 ds1620(GPIO0, GPIO2, GPIO3);
 
 void setup()
 {
 
-
-  // Call DS1620 constructor using pin variables
-  DS1620 ds1620(GPIO0, GPIO1, GPIO2);
-
-  //GPIO 1 (TX) swap the pin to a GPIO.
-  pinMode(GPIO1, FUNCTION_3);
+  //GPIO 3 (RX) swap the pin to a GPIO.
+  pinMode(GPIO3, FUNCTION_3);
+  pinMode(GPIO3, OUTPUT);
   
   ds1620.config();
   delay(1000);
